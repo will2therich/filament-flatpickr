@@ -40,7 +40,7 @@
                 class="absolute flex items-center justify-center w-6 h-6 pl-1 text-gray-400 pointer-events-none group-focus-within:text-primary-500"/>
             <input
                 {{$isDisabled() ? 'disabled': ''}}
-                class="block w-full h-10 pl-10 placeholder-gray-400 transition duration-75 border-gray-300 rounded-lg shadow-sm focus:border-primary-600 focus:ring-1 focus:ring-inset focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
+                class="block w-full h-10 pl-10 placeholder-gray-400 bg-transparent transition duration-75 border-gray-300 rounded-lg shadow-sm focus:border-primary-600 focus:ring-1 focus:ring-inset focus:ring-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
                 x-ref="picker"
                 x-model="state"
                 id="picker">
