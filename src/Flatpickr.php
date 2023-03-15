@@ -136,14 +136,18 @@ class Flatpickr extends Field
                 return null;
             }
 
-            if (! $state instanceof CarbonInterface) {
-                $state = Carbon::parse($state);
+            try {
+                if (! $state instanceof CarbonInterface) {
+                    $state = Carbon::parse($state);
+                }
+    //            $state->shiftTimezone($component->getTimezone());
+                $state->setTimezone(config('app.timezone'));
+
+                return $state->format($component->getDateFormat());
+            } catch (\Exception $e) {
+                // The multiple date picker cannot be dateformatted so just return its string
+                return $state;
             }
-
-//            $state->shiftTimezone($component->getTimezone());
-            $state->setTimezone(config('app.timezone'));
-
-            return $state->format($component->getDateFormat());
         });
 
         $this->rule(
