@@ -113,46 +113,46 @@ class Flatpickr extends Field
         $theme = config('filament-flatpickr.default_theme', 'default');
         $this->theme($theme);
         $this->reactive();
-        $this->afterStateHydrated(static function (Flatpickr $component, $state): void {
-            if (blank($state)) {
-                return;
-            }
+//         $this->afterStateHydrated(static function (Flatpickr $component, $state): void {
+//             if (blank($state)) {
+//                 return;
+//             }
 
-            if (! $state instanceof CarbonInterface) {
-                try {
-                    $state = \Illuminate\Support\Carbon::createFromFormat($component->getDateFormat(), $state);
-                } catch (InvalidFormatException $exception) {
-                    try {
-                        $state = Carbon::parse($state);
-                    } catch (InvalidFormatException $exception) {
-                        $state = $state;
-                    }
-                }
-            }
+//             if (! $state instanceof CarbonInterface) {
+//                 try {
+//                     $state = \Illuminate\Support\Carbon::createFromFormat($component->getDateFormat(), $state);
+//                 } catch (InvalidFormatException $exception) {
+//                     try {
+//                         $state = Carbon::parse($state);
+//                     } catch (InvalidFormatException $exception) {
+//                         $state = $state;
+//                     }
+//                 }
+//             }
 
-//            $state->setTimezone($component->getTimezone());
+// //            $state->setTimezone($component->getTimezone());
 
-            $component->state($state);
-        });
+//             $component->state($state);
+//         });
 
-        $this->dehydrateStateUsing(static function (Flatpickr $component, $state) {
-            if (blank($state)) {
-                return null;
-            }
+//         $this->dehydrateStateUsing(static function (Flatpickr $component, $state) {
+//             if (blank($state)) {
+//                 return null;
+//             }
 
-            try {
-                if (! $state instanceof CarbonInterface) {
-                    $state = Carbon::parse($state);
-                }
-    //            $state->shiftTimezone($component->getTimezone());
-                $state->setTimezone(config('app.timezone'));
+//             try {
+//                 if (! $state instanceof CarbonInterface) {
+//                     $state = Carbon::parse($state);
+//                 }
+//     //            $state->shiftTimezone($component->getTimezone());
+//                 $state->setTimezone(config('app.timezone'));
 
-                return $state->format($component->getDateFormat());
-            } catch (\Exception $e) {
-                // The multiple date picker cannot be dateformatted so just return its string
-                return $state;
-            }
-        });
+//                 return $state->format($component->getDateFormat());
+//             } catch (\Exception $e) {
+//                 // The multiple date picker cannot be dateformatted so just return its string
+//                 return $state;
+//             }
+//         });
 
         $this->rule(
             'date',
