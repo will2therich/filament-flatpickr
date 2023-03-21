@@ -122,7 +122,11 @@ class Flatpickr extends Field
                 try {
                     $state = \Illuminate\Support\Carbon::createFromFormat($component->getDateFormat(), $state);
                 } catch (InvalidFormatException $exception) {
-                    $state = Carbon::parse($state);
+                    try {
+                        $state = Carbon::parse($state);
+                    } catch (InvalidFormatException $exception) {
+                        $state = $state;
+                    }
                 }
             }
 
